@@ -55,7 +55,7 @@ public TestSubsystem(){
     }
 
     public void setMotor(double speed){
-        motor.setSpeed(speed)
+        motor.setSpeed(speed);
     }
 
     // kinda a while loop, but for while motor on
