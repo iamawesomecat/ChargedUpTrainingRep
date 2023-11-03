@@ -4,8 +4,11 @@ package frc.team2412.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.SparkMaxAbsoluteEncoder;
-import edu.wpi.first.wpilibj.motorcontrol.MotorController, java.lang.AutoCloseable;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import com.revrobotics.CANSparkMax.IdleMode;
+import com.revrobotics.SparkMaxAbsoluteEncoder.Type;
+
 
 public class TestSubsystem extends SubsystemBase {
     
@@ -27,8 +30,8 @@ public class TestSubsystem extends SubsystemBase {
 public TestSubsystem(){
 
         //initialize the variables that are important
-        this.motor = new CANSparkMax(0, MotorType.kBrushless)
-        this.motorEncoder = motor.getAbsoluteEncoder();
+        this.motor = new CANSparkMax(60, MotorType.kBrushless);
+        this.motorEncoder = motor.getAbsoluteEncoder(Type.kDutyCycle);
 
 
         //configure the hardware
@@ -43,19 +46,23 @@ public TestSubsystem(){
 
 
     }
-
+    //WE GET THE ANGLES (IGNORE THIS)
     public double getAngle(){ 
 
-        return motorEncoder.getPosition
+        return motorEncoder.getPosition();
     }
 
-
-    public void setSpeed(){
+    public void setMotorForward() {
         motor.set(MOTOR_SPEED);
     }
 
+    public void setMotorReverse() {
+        motor.set(-MOTOR_SPEED);
+    }
+
+
     public void setMotor(double speed){
-        motor.setSpeed(speed);
+        motor.set(speed);
     }
 
     // kinda a while loop, but for while motor on

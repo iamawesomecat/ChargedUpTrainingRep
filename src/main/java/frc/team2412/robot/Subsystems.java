@@ -15,6 +15,7 @@ import frc.team2412.robot.subsystems.ArmSubsystem;
 import frc.team2412.robot.subsystems.DrivebaseSubsystem;
 import frc.team2412.robot.subsystems.IntakeSubsystem;
 import frc.team2412.robot.subsystems.LEDSubsystem;
+import frc.team2412.robot.subsystems.TestSubsystem;
 import frc.team2412.robot.subsystems.VisionSubsystem;
 
 public class Subsystems {
@@ -35,6 +36,7 @@ public class Subsystems {
 	public VisionSubsystem visionSubsystem;
 	public LEDSubsystem ledSubsystem;
 	public ArmLEDSubsystem armLedSubsystem;
+	public TestSubsystem testSubsystem;
 
 	public SwerveDrivePoseEstimator poseEstimator;
 
