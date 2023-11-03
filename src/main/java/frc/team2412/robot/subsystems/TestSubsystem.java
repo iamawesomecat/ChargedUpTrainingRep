@@ -1,74 +1,61 @@
 package frc.team2412.robot.subsystems;
 
-
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.SparkMaxAbsoluteEncoder;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import com.revrobotics.CANSparkMax.IdleMode;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.SparkMaxAbsoluteEncoder;
 import com.revrobotics.SparkMaxAbsoluteEncoder.Type;
-
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class TestSubsystem extends SubsystemBase {
-    
-    //CONSTANTS ARE ALWAYS IN ALL CAPS
 
+	// CONSTANTS ARE ALWAYS IN ALL CAPS
 
-    private final double MOTOR_SPEED = 0.5;
-    private final double MAX_ANGLE = 60;
+	private final double MOTOR_SPEED = 0.5;
+	private final double MAX_ANGLE = 60;
 
+	private final CANSparkMax motor;
+	private final SparkMaxAbsoluteEncoder motorEncoder;
 
-    private final CANSparkMax motor;
-    private final SparkMaxAbsoluteEncoder motorEncoder;
-    
-    
-    
-    
-    //constructor 
-    
-public TestSubsystem(){
+	// constructor
 
-        //initialize the variables that are important
-        this.motor = new CANSparkMax(60, MotorType.kBrushless);
-        this.motorEncoder = motor.getAbsoluteEncoder(Type.kDutyCycle);
+	public TestSubsystem() {
 
+		// initialize the variables that are important
+		this.motor = new CANSparkMax(60, MotorType.kBrushless);
+		this.motorEncoder = motor.getAbsoluteEncoder(Type.kDutyCycle);
 
-        //configure the hardware
+		// configure the hardware
 
-        motor.setIdleMode(IdleMode.kBrake);
-    }
+		motor.setIdleMode(IdleMode.kBrake);
+	}
 
-    //GETTER
-    public double getSpeed(){
+	// GETTER
+	public double getSpeed() {
 
-        return motor.get();
+		return motor.get();
+	}
+	// WE GET THE ANGLES (IGNORE THIS)
+	public double getAngle() {
 
+		return motorEncoder.getPosition();
+	}
 
-    }
-    //WE GET THE ANGLES (IGNORE THIS)
-    public double getAngle(){ 
+	public void setMotorForward() {
+		motor.set(MOTOR_SPEED);
+	}
 
-        return motorEncoder.getPosition();
-    }
+	public void setMotorReverse() {
+		motor.set(-MOTOR_SPEED);
+	}
 
-    public void setMotorForward() {
-        motor.set(MOTOR_SPEED);
-    }
+	public void setMotor(double speed) {
+		motor.set(speed);
+	}
 
-    public void setMotorReverse() {
-        motor.set(-MOTOR_SPEED);
-    }
-
-
-    public void setMotor(double speed){
-        motor.set(speed);
-    }
-
-    // kinda a while loop, but for while motor on
-    public void periodic() {
-        //repeatedly print the current angle
-        System.out.println(getAngle());
-    }
-
+	// kinda a while loop, but for while motor on
+	public void periodic() {
+		// repeatedly print the current angle
+		System.out.println(getAngle());
+	}
 }

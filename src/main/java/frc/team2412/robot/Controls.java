@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import frc.team2412.robot.commands.Test.*;
 import frc.team2412.robot.commands.arm.ManualArmOverrideOffCommand;
 import frc.team2412.robot.commands.arm.ManualArmOverrideOnCommand;
 import frc.team2412.robot.commands.arm.SetFullArmCommand;
@@ -26,8 +27,6 @@ import frc.team2412.robot.commands.led.LEDPurpleCommand;
 import frc.team2412.robot.commands.led.LEDYellowCommand;
 import frc.team2412.robot.subsystems.IntakeSubsystem.IntakeConstants.GamePieceType;
 import frc.team2412.robot.util.DriverAssist;
-import frc.team2412.robot.commands.Test.*;
-
 
 public class Controls {
 	public static class ControlConstants {
@@ -71,7 +70,7 @@ public class Controls {
 	public final Trigger ledPurple;
 	public final Trigger ledYellow;
 
-	//test
+	// test
 
 	public final Trigger testForward;
 	public final Trigger testBackward;
@@ -109,8 +108,8 @@ public class Controls {
 		ledYellow = codriveController.leftBumper();
 
 		testForward = codriveController.leftTrigger();
-		testBackward = codriveController.rightTrigger();	
-		testForwardBackwardSequentialCommand = codriveController.rightTrigger();	
+		testBackward = codriveController.rightTrigger();
+		testForwardBackwardSequentialCommand = codriveController.rightTrigger();
 
 		if (Subsystems.SubsystemConstants.DRIVEBASE_ENABLED) {
 			bindDrivebaseControls();
@@ -214,12 +213,12 @@ public class Controls {
 		ledYellow.onTrue(new LEDYellowCommand(s.ledSubsystem));
 	}
 
-
-	public void bindTestControls(){
+	public void bindTestControls() {
 		testForward.onTrue(new testForwardCommand(s.testSubsystem));
 		testBackward.onTrue(new TestBackwardCommand(s.testSubsystem));
 		// testForwardBackwardSequentialCommand
 		// TestForwardBackwardSequentialCommand
-		testForwardBackwardSequentialCommand.onTrue(new TestForwardBackwardSequentialCommand(s.testSubsystem));
+		testForwardBackwardSequentialCommand.onTrue(
+				new TestForwardBackwardSequentialCommand(s.testSubsystem));
 	}
 }
